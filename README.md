@@ -60,9 +60,3 @@ Building this algorithm from scratch gave me hands-on experience with:
 * Debugging numerical instability
 * Understanding how model parameters shape real data distributions
 
-
-💼 [LinkedIn](https://linkedin.com/in/yourprofile) · 🧠 [GitHub](https://github.com/your-username)
-
----
-
-Would you like me to adapt this README tone for **data science recruiters** (more applied/results-focused) or **research/engineering recruiters** (more mathematical and algorithmic)?
