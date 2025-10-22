@@ -1,62 +1,55 @@
-### 🧠 Overview
+# Backpropagation From Scratch — Numpy-Only (Jupyter Notebook)
 
-This project demonstrates how I implemented a **Gaussian (Normal) distribution fitting algorithm** entirely **from scratch** using **Python and NumPy**.
-Rather than relying on pre-built machine learning tools, I manually derived and coded the **gradient descent optimization** process to fit the model parameters (mean and standard deviation) to real height data.
-
-It’s a concise yet powerful demonstration of how optimization and probability theory come together in practical data modeling.
+This repository contains a single Jupyter notebook that implements a **feed-forward neural network** and trains it using **gradient descent with backpropagation**, written entirely with **NumPy** (no TensorFlow/PyTorch). It’s intended as an educational, fully transparent walk-through of the math and the code.
 
 ---
 
-### ⚙️ Project Goal
+## What’s inside
 
-To fit a **Gaussian model** to empirical height data by minimizing the squared difference between the observed histogram and the model’s probability density function using **steepest descent**.
+* Step-by-step sections:
 
----
-
-### 🧩 Core Concepts Implemented
-
-| Concept                                   | Description                                                                                                                |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **Gaussian Probability Density Function** | Derived and implemented the function                                                                                       |
-| **Analytical Derivatives**                | Computed ∂f/∂μ and ∂f/∂σ manually for accurate gradient calculations                                                       |
-| **Chi-Squared Error Function**            | optimization target                                                                                                        |
-| **Gradient Descent (Steepest Descent)**   | Iteratively updated μ and σ using their partial derivatives to minimize error                                              |
-| **Visualization**                         | Plotted the evolving fit and the optimization path in parameter space                                                      |
+  1. Setup and data preparation
+  2. Network architecture definition
+  3. Forward propagation
+  4. Backpropagation (manual gradients)
+  5. Training loop (gradient descent)
+  6. Evaluation and visualization
+* Clean, modular functions for network operations and gradients (e.g., `network_function`, `cost`, and Jacobians like `J_W1`, `J_b1`, `J_W2`, `J_b2`, `J_W3`, `J_b3`).
+* Lightweight, framework-free code you can adapt for experiments.
 
 ---
 
-### 🧮 Technologies Used
+## Requirements
 
-* **Python 3.10+**
-* **NumPy** for numerical computation
-* **Matplotlib** for data visualization
-
----
+* Python 3.8+
+* NumPy
+* Matplotlib
 
 
-### 📈 Results
+## Key functions (at a glance)
 
-* The algorithm successfully converges toward optimal parameters (μ and σ) that closely fit the histogram of height data.
-* Visualizations show:
+* `network_function(x)` → returns layer activations up to the output
+* `cost(x, y)` → mean squared error (MSE) style objective used in the notebook
+* `reset_network()` → re-initializes parameters
+* Gradient/Jacobian helpers used in backprop:
 
-  * The initial and final Gaussian curve over the histogram.
-  * The optimization trajectory in the (μ, σ) parameter space.
+  * `J_W1(x, y)`, `J_b1(x, y)`
+  * `J_W2(x, y)`, `J_b2(x, y)`
+  * `J_W3(x, y)`, `J_b3(x, y)`
 
-**Example outcome:**
-
-| Parameter   | Initial | Final  |
-| ----------- | ------- | ------ |
-| μ (mean)    | 155     | ≈167.5 |
-| σ (std dev) | 6       | ≈7.8   |
+These expose the math of backprop explicitly, step by step.
 
 ---
 
-### 💬 Reflection
+## How the training loop works (conceptually)
 
-Building this algorithm from scratch gave me hands-on experience with:
+1. **Forward pass**: compute activations layer by layer.
+2. **Loss**: compare predictions to `y` with a differentiable cost function.
+3. **Backward pass**: compute gradients for each parameter group (`W1/b1`, `W2/b2`, `W3/b3`) using the chain rule.
+4. **Update**: subtract a scaled gradient (learning rate × gradient) from each parameter.
+5. **Repeat** for several epochs/iterations until convergence.
 
-* Mathematical optimization (gradient descent)
-* Analytical differentiation
-* Debugging numerical instability
-* Understanding how model parameters shape real data distributions
+
+
+This notebook is an educational rewrite showing backpropagation in detail, built only with NumPy and Matplotlib.
 
